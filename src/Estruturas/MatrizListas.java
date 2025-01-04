@@ -11,11 +11,14 @@ public class MatrizListas implements MatrizEsparsa{
 
     @Override
     public boolean insereElem(int row, int col, int valor) {
+    	if((valor != 0) && (row < tam && col < tam)) {
+    		 
+    	}
         return false;
     }
 
     @Override
-    public boolean removeElem() {
+    public boolean removeElem(int elem) {
         return false;
     }
 
@@ -75,8 +78,8 @@ public class MatrizListas implements MatrizEsparsa{
     }
 
     @Override
-    public int multiplicaMatriz(MatrizEsparsa e) {
-        return 0;
+    public MatrizEsparsa multiplicaMatriz(MatrizEsparsa e) {
+        return null;
     }
 
     @Override
