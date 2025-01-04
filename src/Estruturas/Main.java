@@ -26,6 +26,26 @@ public class Main {
 		m2.insereElem(1, 0, 6);
 		m2.insereElem(1, 1, 3);
 		
+		MatrizEstatica m3 = new MatrizEstatica(3, 3);
+		m3.insereElem(0, 0, 4);
+		m3.insereElem(0, 1, 3);
+		m3.insereElem(0, 2, 1);
+		m3.insereElem(1, 0, 0);
+		m3.insereElem(1, 1, 2);
+		m3.insereElem(1, 2, 5);
+		m3.insereElem(2, 0, 0);
+		m3.insereElem(2, 1, 0);
+		m3.insereElem(2, 2, 1);
+		
+		System.out.println("Matriz 3x3");
+		m3.imprime();
+		
+		if(m3.ehMatrizTriangSup()) {
+			System.out.println("É uma matriz Triangular Superior");
+		}
+		else {
+			System.out.println("Não é uma matriz Triangular Superior\n");
+		}
 		
 		
 		
