@@ -1,25 +1,65 @@
 package Estruturas;
 
 public class MatrizListas implements MatrizEsparsa{
-    private int tam;
+	private int linhas;
+    private int colunas;
     private Lista[] matriz;
+   
+    
 
-    public MatrizListas(int tam){
-        this.tam = tam;
-        matriz = new Lista[tam];
+    public MatrizListas(int linhas, int colunas){
+        if(setLinhas(linhas) && setColunas(colunas)){
+        	 matriz = new Lista[linhas];
+        }
     }
-
+    
+    
+    public boolean setLinhas(int linhas) {
+    	if(linhas > 0) {
+    		this.linhas = linhas;
+    		return true;
+    	}
+    	return false;
+    }
+    public boolean setColunas(int colunas) {
+    	if(colunas > 0) {
+    		this.colunas = colunas;
+    		return true;
+    	}
+    	return false;
+    }
+    
+    public int getLinhas(){
+    	return linhas;
+    }
+    
+    public int getColunas() {
+    	return colunas;
+    }
+    
     @Override
     public boolean insereElem(int row, int col, int valor) {
-    	if((valor != 0) && (row < tam && col < tam)) {
-    		 
+    	if((valor != 0) && (row > 0 && row < this.getLinhas() && col < this.getColunas())) {
+    		if(matriz[row] == null) {
+    			matriz[row] = new Lista();
+    		}
+    		matriz[row].insere(col);
+    		matriz[row].insere(valor);
+    		return true;
+    		
     	}
         return false;
     }
 
     @Override
     public boolean removeElem(int elem) {
+    	
         return false;
+    }
+    
+    public boolean removeElem(int row, int col) {
+    	
+        return true;
     }
 
     @Override
