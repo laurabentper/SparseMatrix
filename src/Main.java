@@ -1,16 +1,14 @@
-package Estruturas;
+import Estruturas.MatrizEsparsa;
+import Estruturas.MatrizEstatica;
 
 public class Main {
 
 	public static void main(String[] args) {
-		MatrizEstatica m = new MatrizEstatica(2, 2);
+		MatrizEstatica m = new MatrizEstatica(3);
 		m.insereElem(0, 0, 1);
 		m.insereElem(0, 1, 2);
 		m.insereElem(1, 0, 3);
 		m.insereElem(1, 1, 4);
-		m.imprime();
-		
-		m.removeElem(1);
 		m.imprime();
 		
 		m.insereElem(0, 0, 1);
@@ -20,13 +18,13 @@ public class Main {
 		
 		m.imprime();
 		
-		MatrizEstatica m2 = new MatrizEstatica(2, 2);
+		MatrizEstatica m2 = new MatrizEstatica(3);
 		m2.insereElem(0, 0, 2);
 		m2.insereElem(0, 1, 5);
 		m2.insereElem(1, 0, 6);
 		m2.insereElem(1, 1, 3);
 		
-		MatrizEstatica m3 = new MatrizEstatica(3, 3);
+		MatrizEstatica m3 = new MatrizEstatica(3);
 		m3.insereElem(0, 0, 4);
 		m3.insereElem(0, 1, 3);
 		m3.insereElem(0, 2, 1);
@@ -47,8 +45,6 @@ public class Main {
 			System.out.println("Não é uma matriz Triangular Superior\n");
 		}
 		
-		
-		
 		System.out.println("Matriz");
 		m.imprime();
 		
@@ -61,23 +57,22 @@ public class Main {
 		
 		
 		System.out.println("Matriz Transposta");
-		MatrizEstatica transp = (MatrizEstatica) m.obtemTransposta(m);
+		MatrizEsparsa transp = m.obtemTransposta();
 		transp.imprime();
-		
 
+		System.out.println("Matriz m");
+		m.imprime();
 		System.out.println("Segunda Matriz");
 		m2.imprime();
 		
 		System.out.println("Soma entre as matrizes");
-		MatrizEstatica soma = (MatrizEstatica) m.somaMatriz(m2);
+		MatrizEstatica soma = m.somaMatriz(m2);
 		soma.imprime();
 		
 		
 		System.out.println("Multiplicação entre as matrizes");
-		MatrizEstatica mult = (MatrizEstatica) m.multiplicaMatriz(m2);
+		MatrizEstatica mult = m.multiplicaMatriz(m2);
 		mult.imprime();
-		
-		
 		
 	}
 
