@@ -40,56 +40,8 @@ public class Lista {
 		return prim == null;
 	}
 
-	public void insere(int col, int elem)
-	{
-		Elo p, q;
-		Elo ant = null;
 
-		q = new Elo(col, elem);
 
-		for (p = prim; ((p != null) && (p.col < col)); p = p.prox)
-			ant = p;
-
-		if (ant == null)
-			prim = q;
-		else
-			ant.prox = q;
-
-		q.prox = p;
-	}
-
-	public boolean remove(int col)
-	{
-		Elo p;
-		Elo ant = null;
-
-		for(p = prim; ((p != null) && (p.col < col)); p = p.prox)
-			ant = p;
-
-		if ((p == null) || (p.col != col))
-			return false;
-
-		if (p == prim)
-			prim = prim.prox;
-		else
-			ant.prox = p.prox;
-
-		p = null;
-
-		return true;
-	}
-
-	public boolean busca(int elem) {
-		Elo p;
-		
-		for(p = prim; p != null; p = p.prox)
-		{
-			if(p.dado == elem)
-				return true;
-		}
-		
-		return false;
-	}
 
 	/*
 	 public boolean remove(int col) {
