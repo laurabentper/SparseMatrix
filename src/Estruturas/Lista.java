@@ -122,6 +122,37 @@ public class Lista
 		System.out.println();
 	}
 	
+	public void preencherLinha(int[] linha) {
+		Elo p = prim;
+		while(p != null && p.prox != null) {
+			int valor = p.dado;
+			int coluna = p.prox.dado;
+			if(coluna >= 0 && coluna < linha.length) {
+				linha[coluna] = valor;
+			}
+			
+			p = p.prox.prox;
+		}
+	}
+	
+	public int obterValor(int col) {
+		Elo p = prim;
+		while(p != null && p.prox != null) {
+			int valor = p.dado;
+			int coluna = p.prox.dado;
+			if(coluna == col) {
+				return valor;
+			}
+			
+			p = p.prox.prox;
+		}
+		return 0;
+	}
+	
+	
+	
+	
+	
 	/* Implementa��o recursiva da fun��o de impress�o. */
 	public void imprimeRecursivo()
 	{

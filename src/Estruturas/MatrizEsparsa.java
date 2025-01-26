@@ -12,9 +12,9 @@ public interface MatrizEsparsa {
     boolean ehMatrizColuna();
     boolean ehMatrizTriangInf();
     boolean ehMatrizTriangSup();
-    boolean ehSimetrica(MatrizEsparsa e);
+    boolean ehSimetrica();
     MatrizEsparsa somaMatriz(MatrizEsparsa e);
     MatrizEsparsa multiplicaMatriz(MatrizEsparsa e);
-    MatrizEsparsa obtemTransposta(MatrizEsparsa e);
+    MatrizEsparsa obtemTransposta();
 }
 

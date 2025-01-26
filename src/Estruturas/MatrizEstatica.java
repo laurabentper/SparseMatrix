@@ -180,12 +180,11 @@ public class MatrizEstatica implements MatrizEsparsa {
     }
 
     @Override
-    public boolean ehSimetrica(MatrizEsparsa e) {
-    	MatrizEstatica matriz = (MatrizEstatica) e;
-    	MatrizEstatica matrizTransposta = (MatrizEstatica) matriz.obtemTransposta(e);
-    	for(int i = 0; i < matriz.linhas; i++) {
-    		for(int j = 0; i < matriz.colunas; j++) {
-    			if(matriz.matriz[i][j] != matrizTransposta.matriz[i][j]) {
+    public boolean ehSimetrica() {
+    	MatrizEstatica matrizTransposta = (MatrizEstatica) this.obtemTransposta();
+    	for(int i = 0; i < this.getLinhas(); i++) {
+    		for(int j = 0; i < this.getColunas(); j++) {
+    			if(this.matriz[i][j] != matrizTransposta.matriz[i][j]) {
     				return false;
     			}
     		}
@@ -234,17 +233,13 @@ public class MatrizEstatica implements MatrizEsparsa {
     }
 
     @Override
-    public MatrizEsparsa obtemTransposta(MatrizEsparsa e) {
-    	if (!(e instanceof MatrizEstatica)) {
-            throw new IllegalArgumentException("Erro: a matriz fornecida não é do tipo MatrizEstatica.");
-        }
+    public MatrizEsparsa obtemTransposta() {
     	
-    	MatrizEstatica matriz = (MatrizEstatica) e;
-    	MatrizEstatica matrizTransposta = new MatrizEstatica(matriz.getColunas(), matriz.getLinhas());
+    	MatrizEstatica matrizTransposta = new MatrizEstatica(this.getColunas(), this.getLinhas());
     	
-    	for(int i = 0; i < matriz.getLinhas(); i++) {
-    		for(int j = 0; j < matriz.getColunas(); j++) {
-    			matrizTransposta.insereElem(j, i, matriz.matriz[i][j]);
+    	for(int i = 0; i < this.getLinhas(); i++) {
+    		for(int j = 0; j < this.getColunas(); j++) {
+    			matrizTransposta.insereElem(j, i, this.matriz[i][j]);
     		}
     	}
     	
