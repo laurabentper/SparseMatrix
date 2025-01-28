@@ -17,7 +17,32 @@ public class MatrizListas implements MatrizEsparsa{
             prox = null;
         }
 
+        public int getCol() {
+            return col;
+        }
+
+        public int getElem() {
+            return elem;
+        }
+
+        public Elo getProx() {
+            return prox;
+        }
+
+        public void setCol(int col) {
+            this.col = col;
+        }
+
+        public void setElem(int elem) {
+            this.elem = elem;
+        }
+
+        public void setProx(Elo prox) {
+            this.prox = prox;
+        }
     }
+
+
 
     public MatrizListas(int tam){
         this.tam = tam;
@@ -166,8 +191,8 @@ public class MatrizListas implements MatrizEsparsa{
         return !(col == -1);
     }
 
-    @Override
-    public boolean ehMatrizTriangInf() {
+    /* @Override
+     public boolean ehMatrizTriangInf() {
         for (int i = 0; i < tam; i++) {
             if(matriz[i].contemMaiorQue(i)) return false;
         }
@@ -182,16 +207,47 @@ public class MatrizListas implements MatrizEsparsa{
         return false;
 
     }
+     */
 
     @Override
+    public boolean ehMatrizTriangInf() {
+        for (int i = 0; i < tam; i++) {
+            Elo p = matriz[i];
+
+            while (p != null) {
+                if (p.col > i) {
+                    return false;
+                }
+                p = p.prox;
+            }
+        }
+        return true;
+    }
+
+    /*@Override
     public boolean ehMatrizTriangSup() {
         for (int i = 0; i < tam; i++) {
             if(matriz[i].contemMenorQue(i)) return false;
         }
         return true;
     }
+*/
 
     @Override
+    public boolean ehMatrizTriangSup() {
+        for (int i = 0; i < tam; i++) {
+            Elo p = matriz[i];
+
+            while (p != null) {
+                if (p.col < i) {
+                    return false;
+                }
+                p = p.prox;
+            }
+        }
+        return true;
+    }
+    /*@Override
     public boolean ehSimetrica() {
     	MatrizListas transposta = (MatrizListas) this.obtemTransposta();
     	for(int i = 0; i < this.getLinhas(); i++) {
@@ -203,6 +259,34 @@ public class MatrizListas implements MatrizEsparsa{
     	}
 
         return true;
+    }*/
+
+    @Override
+    public boolean ehSimetrica() {
+        for (int i = 0; i < tam; i++) {
+            Elo p = matriz[i];
+
+            while (p != null) {
+                int j = p.col;
+
+                if (!existeElemento(j, i, p.elem)) {
+                    return false;
+                }
+                p = p.prox;
+            }
+        }
+        return true;
+    }
+
+    private boolean existeElemento(int row, int col, int elem) {
+        Elo p = matriz[row];
+        while (p != null) {
+            if (p.col == col && p.elem == elem) {
+                return true;
+            }
+            p = p.prox;
+        }
+        return false;
     }
 
     @Override
@@ -212,42 +296,12 @@ public class MatrizListas implements MatrizEsparsa{
 
     @Override
     public MatrizEsparsa multiplicaMatriz(MatrizEsparsa e) {
-    	MatrizListas segundaMatriz = (MatrizListas) e;
-
-    	if(this.getColunas() != segundaMatriz.getLinhas()) {
-    		System.out.println("Erro: índices diferentes");
-    	}
-    	else {
-    		int valor;
-    		MatrizListas produto = new MatrizListas(this.getLinhas(), segundaMatriz.getColunas());
-    		for(int i = 0; i < produto.getLinhas(); i++) {
-        		for(int j = 0; j < produto.getColunas(); j++) {
-        			valor = 0;
-        			for(int k = 0; k < this.getColunas(); k++) {
-        				valor += this.matriz[i].obterValor(k) * segundaMatriz.matriz[k].obterValor(j);
-        			}
-        			produto.insereElem(i, j, valor);
-        		}
-        	}
-    		return produto;
-    	}
-
         return null;
     }
 
     @Override
     public MatrizEsparsa obtemTransposta() {
-
-    	MatrizListas matrizTransposta = new MatrizListas(this.getColunas(), this.getLinhas());
-
-    	for(int i = 0; i < this.getLinhas(); i++) {
-    		for(int j = 0; j < this.getColunas(); j++) {
-    			matrizTransposta.insereElem(j, i, this.matriz[i].obterValor(j));
-    		}
-    	}
-
-        return matrizTransposta;
-
+        return null;
     }
 
     /* METODOS IMPROVISADOS DA ANTIGA CLASSE LISTA
