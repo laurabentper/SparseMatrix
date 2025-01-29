@@ -33,8 +33,8 @@ public class Main {
 		System.out.println("Matriz");
 		m.imprime();
 
-		System.out.println("Tamanho da matriz: " + m.getTamanho() + "X" + m.getTamanho());
-		System.out.println("Elemento na posição (1, 1): " + m.getElemento(1, 1));
+		//System.out.println("Tamanho da matriz: " + m.getTamanho() + "X" + m.getTamanho());
+		//System.out.println("Elemento na posição (1, 1): " + m.getElemento(1, 1));
 
 		m.removeElem(1,1);
 		m.imprime();
