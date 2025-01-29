@@ -149,7 +149,7 @@ public class MatrizEstatica implements MatrizEsparsa {
     	
         return false;
     }
-
+/*
     @Override
     public boolean ehMatrizTriangInf() {
     	for (int i = 0; i < linhas; i++) {
@@ -192,7 +192,7 @@ public class MatrizEstatica implements MatrizEsparsa {
     	
         return true;
     }
-
+*/
     @Override
     public MatrizEsparsa somaMatriz(MatrizEsparsa e) {
     	MatrizEstatica matriz = (MatrizEstatica) e;

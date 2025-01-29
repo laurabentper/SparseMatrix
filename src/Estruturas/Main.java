@@ -3,7 +3,7 @@ package Estruturas;
 public class Main {
 
 	public static void main(String[] args) {
-		MatrizEstatica m = new MatrizEstatica(2, 2);
+		/*MatrizEstatica m = new MatrizEstatica(2, 2);
 		m.insereElem(0, 0, 1);
 		m.insereElem(0, 1, 2);
 		m.insereElem(1, 0, 3);
@@ -101,22 +101,21 @@ public class Main {
 		matrizLista2.imprimeVazia();
 		*/
 		System.out.println("Primeira Matriz com Listas Encadeadas");
-		MatrizListas ex1 = new MatrizListas(2,3);
-		ex1.insereElem(0, 0, 10);
-		ex1.insereElem(0, 1, 15);
-		ex1.insereElem(0, 2, 1);
-		ex1.insereElem(1, 0, 20);
-		ex1.insereElem(1, 1, 23);
+		MatrizListas ex1 = new MatrizListas(2);
+		ex1.insereElem(0, 0, 1);
+		ex1.insereElem(0, 1, 2);
+		ex1.insereElem(1, 0, 3);
+		ex1.insereElem(1, 1, 4);
 		
 		ex1.imprime();
 		
 		System.out.println("Segunda Matriz com Listas Encadeadas");
-		MatrizListas ex2 = new MatrizListas(2,3);
-		ex2.insereElem(0, 0, 7);
-		ex2.insereElem(0, 1, 15);
-		ex2.insereElem(1, 0, 14);
-		ex2.insereElem(1, 1, 23);
-		ex2.insereElem(1, 2, 5);
+		MatrizListas ex2 = new MatrizListas(2);
+		ex2.insereElem(0, 0, 15);
+		ex2.insereElem(0, 1, 8);
+		ex2.insereElem(1, 0, 5);
+		ex2.insereElem(1, 1, 6);
+		
 		
 		ex2.imprime();
 		
@@ -124,6 +123,12 @@ public class Main {
 		MatrizListas s = (MatrizListas) ex1.somaMatriz(ex2);
 		s.imprime();
 		
+		System.out.println("Multiplicação das Matrizes com Listas Encadeadas");
+		MatrizListas mult = (MatrizListas) ex1.multiplicaMatriz(ex2);
+		mult.imprime();
+		
+		MatrizListas transposta = (MatrizListas) ex2.obtemTransposta();
+		transposta.imprime();
 		
 		
 		
