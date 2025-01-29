@@ -1,8 +1,25 @@
 package Estruturas;
 
+import java.awt.PopupMenu;
+
 public class MatrizListas implements MatrizEsparsa{
     private int tam;
     private Elo[] matriz;
+<<<<<<< HEAD
+
+    protected class Elo
+    {
+        protected int col;
+        protected int elem;
+        protected Elo prox;
+
+        public Elo(int col, int elem)
+        {
+            this.col = col;
+            this.elem = elem;
+            prox = null;
+
+=======
 
     protected class Elo
     {
@@ -39,11 +56,41 @@ public class MatrizListas implements MatrizEsparsa{
 
         public void setProx(Elo prox) {
             this.prox = prox;
+>>>>>>> origin/main
         }
+
+        public int getCol() {
+            return col;
+        }
+
+        public int getElem() {
+            return elem;
+        }
+
+        public Elo getProx() {
+            return prox;
+        }
+
+        public void setCol(int col) {
+            this.col = col;
+        }
+
+        public void setElem(int elem) {
+            this.elem = elem;
+        }
+
+        public void setProx(Elo prox) {
+            this.prox = prox;
+
+        }
+
     }
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/main
     public MatrizListas(int tam){
         this.tam = tam;
         matriz = new Elo[tam];
@@ -127,6 +174,12 @@ public class MatrizListas implements MatrizEsparsa{
             {
                 System.out.print(p.elem + " ");
             }
+<<<<<<< HEAD
+
+            System.out.println();
+
+=======
+>>>>>>> origin/main
         }
 
         System.out.println();
@@ -175,6 +228,10 @@ public class MatrizListas implements MatrizEsparsa{
     public boolean ehMatrizColuna() {
         int col = -1, colunaAtual;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/main
     	for (int i = 0; i < tam; i++) {
             if(matriz[i] != null){
                 if(matriz[i].prox != null)
@@ -190,6 +247,10 @@ public class MatrizListas implements MatrizEsparsa{
         }
         return !(col == -1);
     }
+    
+    
+  
+
 
 
     @Override
@@ -205,12 +266,18 @@ public class MatrizListas implements MatrizEsparsa{
             }
         }
         return true;
+
+
     }
 
 
     @Override
     public boolean ehMatrizTriangSup() {
         for (int i = 0; i < tam; i++) {
+<<<<<<< HEAD
+          
+=======
+>>>>>>> origin/main
             Elo p = matriz[i];
 
             while (p != null) {
@@ -253,17 +320,115 @@ public class MatrizListas implements MatrizEsparsa{
 
     @Override
     public MatrizEsparsa somaMatriz(MatrizEsparsa e) {
+<<<<<<< HEAD
+    	MatrizListas m = (MatrizListas) e;
+    	MatrizListas soma = new MatrizListas(this.tam);
+    	
+    	if(this.tam != m.tam) {
+    		System.out.println("Erro: índices diferentes");
+    	}
+    	
+    	for(int i = 0; i < tam; i++) {
+    		Elo p = this.matriz[i];
+    		Elo p2 = m.matriz[i];
+    		
+    		while(p != null || p2 != null) {
+    			if(p != null && (p2 == null || p.col < p2.col)) {
+    				soma.insereElem(i, p.col, p.elem);
+    				p = p.prox;
+    			}
+    			else if(p2 != null && (p == null || p2.col < p.col)) {
+    				soma.insereElem(i, p2.col, p2.elem);
+    				p2 = p2.prox;
+    			}
+    			else {
+    				soma.insereElem(i, p.col, p.elem+ p2.elem);
+    				p = p.prox;
+    				p2 = p2.prox;
+    				
+    			}
+    		}
+    		
+    	}
+    	
+        return soma;
+
+=======
         return null;
+>>>>>>> origin/main
     }
+
+
+    
+    
 
     @Override
     public MatrizEsparsa multiplicaMatriz(MatrizEsparsa e) {
+<<<<<<< HEAD
+    	MatrizListas segundaMatriz = (MatrizListas) e;
+
+    	if(this.tam != segundaMatriz.tam) {
+    		System.out.println("Erro: índices diferentes");
+    	}
+    	
+    	MatrizListas produto = new MatrizListas(tam);
+    	for(int i = 0; i < tam; i++) {
+        	for(int j = 0; j < tam; j++) {
+        		int valor = 0;
+        		Elo p = this.matriz[i];
+        		for (int k = 0; k < tam; k++) {
+                    Elo p2 = segundaMatriz.matriz[k];
+                    while (p2 != null && p2.col < j) {
+                        p2 = p2.prox; 
+                    }
+                    if (p2 != null && p2.col == j) {
+                        Elo p1 = this.matriz[i];
+                        while (p1 != null && p1.col < k) {
+                            p1 = p1.prox; 
+                        }
+                        if (p1 != null && p1.col == k) {
+                            valor += p1.elem * p2.elem;
+                        }
+                    }
+                }
+        			
+               if(valor != 0) {
+        		produto.insereElem(i, j, valor);
+        	    }
+        			
+        	}
+        }
+    		
+    	return produto;
+=======
         return null;
+>>>>>>> origin/main
     }
+    
 
     @Override
     public MatrizEsparsa obtemTransposta() {
+<<<<<<< HEAD
+
+    	MatrizListas matrizTransposta = new MatrizListas(tam);
+
+    	for(int i = 0; i < tam; i++) {
+    		Elo p = this.matriz[i];
+    		while(p != null) {
+    			matrizTransposta.insereElem(p.col, i, p.elem);
+    			p = p.prox;
+    		}
+
+    	}
+
+        return matrizTransposta;
+
+    }
+
+
+=======
         return null;
     }
 
+>>>>>>> origin/main
 }
