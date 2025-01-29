@@ -191,23 +191,6 @@ public class MatrizListas implements MatrizEsparsa{
         return !(col == -1);
     }
 
-    /* @Override
-     public boolean ehMatrizTriangInf() {
-        for (int i = 0; i < tam; i++) {
-            if(matriz[i].contemMaiorQue(i)) return false;
-        }
-        return true;
-
-        if(this.vazia()) return false;
-
-        Lista.Elo p;
-        for(p = prim; p != null; p = p.prox) {
-            if(p.col > row) return true;
-        }
-        return false;
-
-    }
-     */
 
     @Override
     public boolean ehMatrizTriangInf() {
@@ -224,14 +207,6 @@ public class MatrizListas implements MatrizEsparsa{
         return true;
     }
 
-    /*@Override
-    public boolean ehMatrizTriangSup() {
-        for (int i = 0; i < tam; i++) {
-            if(matriz[i].contemMenorQue(i)) return false;
-        }
-        return true;
-    }
-*/
 
     @Override
     public boolean ehMatrizTriangSup() {
@@ -247,19 +222,6 @@ public class MatrizListas implements MatrizEsparsa{
         }
         return true;
     }
-    /*@Override
-    public boolean ehSimetrica() {
-    	MatrizListas transposta = (MatrizListas) this.obtemTransposta();
-    	for(int i = 0; i < this.getLinhas(); i++) {
-    		for(int j = 0; i < this.getColunas(); j++) {
-    			if(this.matriz[i].obterValor(j) != transposta.matriz[i].obterValor(j)) {
-    				return false;
-    			}
-    		}
-    	}
-
-        return true;
-    }*/
 
     @Override
     public boolean ehSimetrica() {
@@ -304,52 +266,4 @@ public class MatrizListas implements MatrizEsparsa{
         return null;
     }
 
-    /* METODOS IMPROVISADOS DA ANTIGA CLASSE LISTA
-    public boolean contemApenas(int col){
-		if (this.vazia()) return true;
-        return prim.col == col && prim.prox == null;
-    }
-
-	public boolean contemMaiorQue(int row){
-		if(this.vazia()) return false;
-
-		Elo p;
-		for(p = prim; p != null; p = p.prox) {
-			if(p.col > row) return true;
-		}
-		return false;
-	}
-
-	public boolean contemMenorQue(int row){
-		if(this.vazia()) return false;
-		return prim.col < row;
-	}
-
-	public void preencherLinha(int[] linha) {
-		Elo p = prim;
-		while(p != null && p.prox != null) {
-			int valor = p.dado;
-			int coluna = p.prox.dado;
-			if(coluna >= 0 && coluna < linha.length) {
-				linha[coluna] = valor;
-			}
-
-			p = p.prox.prox;
-		}
-	}
-
-	public int obterValor(int col) {
-		Elo p = prim;
-		while(p != null && p.prox != null) {
-			int valor = p.dado;
-			int coluna = p.prox.dado;
-			if(coluna == col) {
-				return valor;
-			}
-
-			p = p.prox.prox;
-		}
-		return 0;
-	}
-     */
 }
