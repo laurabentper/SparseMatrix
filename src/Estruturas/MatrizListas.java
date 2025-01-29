@@ -5,6 +5,7 @@ import java.awt.PopupMenu;
 public class MatrizListas implements MatrizEsparsa{
     private int tam;
     private Elo[] matriz;
+<<<<<<< HEAD
 
     protected class Elo
     {
@@ -18,6 +19,44 @@ public class MatrizListas implements MatrizEsparsa{
             this.elem = elem;
             prox = null;
 
+=======
+
+    protected class Elo
+    {
+        protected int col;
+        protected int elem;
+        protected Elo prox;
+
+        public Elo(int col, int elem)
+        {
+            this.col = col;
+            this.elem = elem;
+            prox = null;
+        }
+
+        public int getCol() {
+            return col;
+        }
+
+        public int getElem() {
+            return elem;
+        }
+
+        public Elo getProx() {
+            return prox;
+        }
+
+        public void setCol(int col) {
+            this.col = col;
+        }
+
+        public void setElem(int elem) {
+            this.elem = elem;
+        }
+
+        public void setProx(Elo prox) {
+            this.prox = prox;
+>>>>>>> origin/main
         }
 
         public int getCol() {
@@ -48,6 +87,10 @@ public class MatrizListas implements MatrizEsparsa{
     }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
     public MatrizListas(int tam){
         this.tam = tam;
         matriz = new Elo[tam];
@@ -131,9 +174,12 @@ public class MatrizListas implements MatrizEsparsa{
             {
                 System.out.print(p.elem + " ");
             }
+<<<<<<< HEAD
 
             System.out.println();
 
+=======
+>>>>>>> origin/main
         }
 
         System.out.println();
@@ -182,7 +228,10 @@ public class MatrizListas implements MatrizEsparsa{
     public boolean ehMatrizColuna() {
         int col = -1, colunaAtual;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     	for (int i = 0; i < tam; i++) {
             if(matriz[i] != null){
                 if(matriz[i].prox != null)
@@ -201,6 +250,7 @@ public class MatrizListas implements MatrizEsparsa{
     
     
   
+
 
 
     @Override
@@ -224,7 +274,10 @@ public class MatrizListas implements MatrizEsparsa{
     @Override
     public boolean ehMatrizTriangSup() {
         for (int i = 0; i < tam; i++) {
+<<<<<<< HEAD
           
+=======
+>>>>>>> origin/main
             Elo p = matriz[i];
 
             while (p != null) {
@@ -267,6 +320,7 @@ public class MatrizListas implements MatrizEsparsa{
 
     @Override
     public MatrizEsparsa somaMatriz(MatrizEsparsa e) {
+<<<<<<< HEAD
     	MatrizListas m = (MatrizListas) e;
     	MatrizListas soma = new MatrizListas(this.tam);
     	
@@ -299,6 +353,9 @@ public class MatrizListas implements MatrizEsparsa{
     	
         return soma;
 
+=======
+        return null;
+>>>>>>> origin/main
     }
 
 
@@ -307,6 +364,7 @@ public class MatrizListas implements MatrizEsparsa{
 
     @Override
     public MatrizEsparsa multiplicaMatriz(MatrizEsparsa e) {
+<<<<<<< HEAD
     	MatrizListas segundaMatriz = (MatrizListas) e;
 
     	if(this.tam != segundaMatriz.tam) {
@@ -342,11 +400,15 @@ public class MatrizListas implements MatrizEsparsa{
         }
     		
     	return produto;
+=======
+        return null;
+>>>>>>> origin/main
     }
     
 
     @Override
     public MatrizEsparsa obtemTransposta() {
+<<<<<<< HEAD
 
     	MatrizListas matrizTransposta = new MatrizListas(tam);
 
@@ -364,4 +426,9 @@ public class MatrizListas implements MatrizEsparsa{
     }
 
 
+=======
+        return null;
+    }
+
+>>>>>>> origin/main
 }
