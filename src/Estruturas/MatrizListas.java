@@ -358,4 +358,9 @@ public class MatrizListas implements MatrizEsparsa{
         return 0;
     }
 
+    @Override
+    public void esvazia() {
+
+    }
+
 }

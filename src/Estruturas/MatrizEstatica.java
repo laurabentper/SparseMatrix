@@ -63,9 +63,11 @@ public class MatrizEstatica implements MatrizEsparsa {
     	for (int i = 0; i < tam; i++) {
             for (int j = 0; j < tam; j++) {
                 removeElem(i, j);
-                System.out.println(matriz[i][j] + " ");
+                System.out.print(matriz[i][j] + " ");
             }
+            System.out.println();
         }
+        System.out.println();
     }
 
     @Override
