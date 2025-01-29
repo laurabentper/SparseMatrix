@@ -112,8 +112,6 @@ public class MatrizEstatica implements MatrizEsparsa {
     @Override
     public boolean ehMatrizColuna() {
         int countColunas = 0;
-<<<<<<< HEAD
-=======
 
         for (int j = 0; j < tam; j++) {
             for (int i = 0; i < tam; i++) {
@@ -126,19 +124,9 @@ public class MatrizEstatica implements MatrizEsparsa {
         }
         return countColunas == 1;
     }
->>>>>>> origin/main
 
-        for (int j = 0; j < tam; j++) {
-            for (int i = 0; i < tam; i++) {
-                if (matriz[i][j] != 0) {
-                    countColunas++;
-                    break;
-                }
-            }
-            if (countColunas > 1) return false;
-        }
-        return countColunas == 1;
-    }
+
+   
     
     @Override
     public boolean ehMatrizTriangInf() {
@@ -182,10 +170,6 @@ public class MatrizEstatica implements MatrizEsparsa {
         return true;
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/main
     // devemos considerar a soma de uma matriz estatica com uma matriz dinâmica?
     @Override
     public MatrizEstatica somaMatriz(MatrizEsparsa e) {
