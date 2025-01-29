@@ -10,6 +10,12 @@ public class MatrizEstatica implements MatrizEsparsa {
             matriz = new int[tam][tam];
     }
 
+    public int getTam() {
+        return tam;
+    }
+
+
+
     @Override
     public boolean insereElem(int row, int col, int valor) {
         if(row >= tam || col >= tam){
@@ -227,6 +233,11 @@ public class MatrizEstatica implements MatrizEsparsa {
     		}
     	}
         return matrizTransposta;
+    }
+
+    @Override
+    public int getElem(int row, int col) {
+        return matriz[row][col];
     }
 
 }

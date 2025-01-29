@@ -196,11 +196,6 @@ public class MatrizListas implements MatrizEsparsa{
         }
         return !(col == -1);
     }
-    
-    
-  
-
-
 
     @Override
     public boolean ehMatrizTriangInf() {
@@ -218,7 +213,6 @@ public class MatrizListas implements MatrizEsparsa{
 
 
     }
-
 
     @Override
     public boolean ehMatrizTriangSup() {
@@ -301,10 +295,6 @@ public class MatrizListas implements MatrizEsparsa{
 
     }
 
-
-    
-    
-
     @Override
     public MatrizEsparsa multiplicaMatriz(MatrizEsparsa e) {
     	MatrizListas segundaMatriz = (MatrizListas) e;
@@ -344,7 +334,6 @@ public class MatrizListas implements MatrizEsparsa{
     	return produto;
 
     }
-    
 
     @Override
     public MatrizEsparsa obtemTransposta() {
@@ -364,5 +353,9 @@ public class MatrizListas implements MatrizEsparsa{
 
     }
 
+    @Override
+    public int getElem(int row, int col) {
+        return 0;
+    }
 
 }
