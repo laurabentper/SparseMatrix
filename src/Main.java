@@ -8,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		testarEstatica(10);
+		testarEstatica( 10 );
 
 		//testarLista(10);
 
@@ -49,7 +49,7 @@ public class Main {
 			int col = ThreadLocalRandom.current().nextInt(0, tamanho);
 			int dado = ThreadLocalRandom.current().nextInt(1, 10);
 
-			// confere se ainda não foi preenchido e insere o dado, adiciona no contador;
+			// confere se ainda não foi preenchido e insere o dado
 			if(matrizEstatica.getElem(row,col) == 0){
 				matrizEstatica.insereElem(row,col,dado);
 				esparsidade--;
@@ -61,92 +61,235 @@ public class Main {
 
 		MatrizEstatica matrizEstatica = new MatrizEstatica(tamanho);
 
-		long t0, t1, somaTempos = 0;
+		int testes = 10;
+		long t1, t0, somaTempos = 0;
 
-		for (int i = 0; i < 10; i++) {
-			matrizEstatica = new MatrizEstatica(tamanho);
+		/*for (int i = 0; i < testes; i++) {
+
+			matrizEstatica.esvazia();
+
+			long t0, t1;
+
+			t0 = System.currentTimeMillis();
+			gerarMatrizEstatica(matrizEstatica);
+			t1 = System.currentTimeMillis();
+			tempos[0] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.imprime();
+			t1 = System.currentTimeMillis();
+			tempos[1] += (t1 - t0);
+
+			int elem = ThreadLocalRandom.current().nextInt(1, 10);
+			t0 = System.currentTimeMillis();
+			matrizEstatica.buscaElem(elem);
+			t1 = System.currentTimeMillis();
+			tempos[2] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.ehVazia();
+			t1 = System.currentTimeMillis();
+			tempos[3] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.ehDiagonal();
+			t1 = System.currentTimeMillis();
+			tempos[4] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.ehMatrizColuna();
+			t1 = System.currentTimeMillis();
+			tempos[5] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.ehMatrizLinha();
+			t1 = System.currentTimeMillis();
+			tempos[6] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.ehMatrizTriangSup();
+			t1 = System.currentTimeMillis();
+			tempos[7] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.ehMatrizTriangInf();
+			t1 = System.currentTimeMillis();
+			tempos[8] += (t1 - t0);
+
+			int row = ThreadLocalRandom.current().nextInt(0, tamanho);
+			int col = ThreadLocalRandom.current().nextInt(0, tamanho);
+			t0 = System.currentTimeMillis();
+			matrizEstatica.getElem(row, col);
+			t1 = System.currentTimeMillis();
+			tempos[9] += (t1 - t0);
+
+			row = ThreadLocalRandom.current().nextInt(0, tamanho);
+			col = ThreadLocalRandom.current().nextInt(0, tamanho);
+			t0 = System.currentTimeMillis();
+			matrizEstatica.insereElem(row, col, 1);
+			t1 = System.currentTimeMillis();
+			tempos[12] += (t1 - t0);
+
+			row = ThreadLocalRandom.current().nextInt(0, tamanho);
+			col = ThreadLocalRandom.current().nextInt(0, tamanho);
+
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.obtemTransposta();
+			t1 = System.currentTimeMillis();
+			tempos[10] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.ehSimetrica();
+			t1 = System.currentTimeMillis();
+			tempos[11] += (t1 - t0);
+
+
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.removeElem(row, col);
+			t1 = System.currentTimeMillis();
+			tempos[13] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.somaMatriz(matrizEstatica);
+			t1 = System.currentTimeMillis();
+			tempos[14] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.multiplicaMatriz(matrizEstatica);
+			t1 = System.currentTimeMillis();
+			tempos[15] += (t1 - t0);
+
+			t0 = System.currentTimeMillis();
+			matrizEstatica.imprimeVazia();
+			t1 = System.currentTimeMillis();
+			tempos[16] += (t1 - t0);
+		}
+
+		System.out.printf("MATRIZ ESTATICA TAM=%d%n", matrizEstatica.getTam());
+		System.out.printf("Tempo gerar: %.5f%n", tempos[0] / 10);
+		System.out.printf("Tempo imprimir: %.5f%n", tempos[1] / 10);
+		System.out.printf("Tempo buscar elemento: %.5f%n", tempos[2] / 10);
+		System.out.printf("Tempo confereVazia: %.5f%n", tempos[3] / 10);
+		System.out.printf("Tempo confereDiagonal: %.5f%n", tempos[4] / 10);
+		System.out.printf("Tempo confereColuna: %.5f%n", tempos[5] / 10);
+		System.out.printf("Tempo confereLinha: %.5f%n", tempos[6] / 10);
+		System.out.printf("Tempo confereTrianguloSuperior: %.5f%n", tempos[7] / 10);
+		System.out.printf("Tempo confereTrianguloInferior: %.5f%n", tempos[8] / 10);
+		System.out.printf("Tempo acessar posicao: %.5f%n", tempos[9] / 10);
+		System.out.printf("Tempo transposta: %.5f%n", tempos[10] / 10);
+		System.out.printf("Tempo verificarSimetria: %.5f%n", tempos[11] / 10);
+		System.out.printf("Tempo inserir: %.5f%n", tempos[12] / 10);
+		System.out.printf("Tempo remover: %.5f%n", tempos[13] / 10);
+		System.out.printf("Tempo soma: %.5f%n", tempos[14] / 10);
+		System.out.printf("Tempo multiplicação: %.5f%n", tempos[15] / 10);
+		System.out.printf("Tempo esvaziar: %.5f%n", tempos[16] / 10);
+		 */
+
+		for (int i = 0; i < testes; i++) {
+			matrizEstatica.esvazia();
 			t0 = System.currentTimeMillis();
 			gerarMatrizEstatica(matrizEstatica);
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoGerar = somaTempos / 10;
+		double tempoGerar = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
+			t0 = System.currentTimeMillis();
+			matrizEstatica.obtemTransposta();
+			t1 = System.currentTimeMillis();
+			somaTempos += (t1 - t0);
+		}
+		double tempoTransposta = (double) somaTempos / 10;
+
+		somaTempos = 0;
+		for (int i = 0; i < testes; i++) {
+			t0 = System.currentTimeMillis();
+			matrizEstatica.ehSimetrica();
+			t1 = System.currentTimeMillis();
+			somaTempos += (t1 - t0);
+		}
+		double tempoVerificaSimetria = (double) somaTempos / 10;
+		//subtrair no relatorio o tempo para gerar a transposta.
+
+		somaTempos = 0;
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
 			matrizEstatica.imprime();
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoImprimir = somaTempos / 10;
+		double tempoImprimir = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			int elem = ThreadLocalRandom.current().nextInt(1, 10);
 			t0 = System.currentTimeMillis();
 			matrizEstatica.buscaElem(elem);
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoBuscar = somaTempos / 10;
+		double tempoBuscar = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
 			matrizEstatica.ehVazia();
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoVerificaVazia = somaTempos / 10;
+		double tempoVerificaVazia = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
 			matrizEstatica.ehDiagonal();
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoVerificaDiagonal = somaTempos / 10;
+		double tempoVerificaDiagonal = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
 			matrizEstatica.ehMatrizColuna();
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoVerificaColuna = somaTempos / 10;
+		double tempoVerificaColuna = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
 			matrizEstatica.ehMatrizLinha();
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoVerificaLinha = somaTempos / 10;
+		double tempoVerificaLinha = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
 			matrizEstatica.ehMatrizTriangSup();
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoTriangSup = somaTempos / 10;
+		double tempoTriangSup = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
 			matrizEstatica.ehMatrizTriangInf();
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoTriangInf = somaTempos / 10;
+		double tempoTriangInf = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			int row = ThreadLocalRandom.current().nextInt(0, tamanho);
 			int col = ThreadLocalRandom.current().nextInt(0, tamanho);
 			t0 = System.currentTimeMillis();
@@ -154,99 +297,78 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoAcessarPosicao = somaTempos / 10;
+		double tempoAcessarPosicao = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
-			t0 = System.currentTimeMillis();
-			matrizEstatica.obtemTransposta();
-			t1 = System.currentTimeMillis();
-			somaTempos += (t1 - t0);
-		}
-		long tempoTransposta = somaTempos / 10;
-
-		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
-			t0 = System.currentTimeMillis();
-			matrizEstatica.ehSimetrica();
-			t1 = System.currentTimeMillis();
-			somaTempos += (t1 - t0);
-		}
-		long tempoVerificaSimetria = somaTempos / 10;
-		//subtrair no relatorio o tempo para gerar a transposta.
-
-		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			int row = ThreadLocalRandom.current().nextInt(0, tamanho);
 			int col = ThreadLocalRandom.current().nextInt(0, tamanho);
 			t0 = System.currentTimeMillis();
 			matrizEstatica.insereElem(row, col,1);
 			t1 = System.currentTimeMillis();
+			matrizEstatica.removeElem(row, col);
 			somaTempos += (t1 - t0);
 		}
-		long tempoInserir = somaTempos / 10;
+		double tempoInserir = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			int row = ThreadLocalRandom.current().nextInt(0, tamanho);
 			int col = ThreadLocalRandom.current().nextInt(0, tamanho);
 			t0 = System.currentTimeMillis();
 			matrizEstatica.removeElem(row, col);
 			t1 = System.currentTimeMillis();
+			matrizEstatica.insereElem(row, col, 1);
 			somaTempos += (t1 - t0);
 		}
-		long tempoRemover = somaTempos / 10;
-
-		MatrizEstatica aux = new MatrizEstatica(tamanho);
-		gerarMatrizEstatica(aux);
+		double tempoRemover = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
-			matrizEstatica.somaMatriz(aux);
+			matrizEstatica.somaMatriz(matrizEstatica);
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoSoma = somaTempos / 10;
+		double tempoSoma = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
-			matrizEstatica.multiplicaMatriz(aux);
+			matrizEstatica.multiplicaMatriz(matrizEstatica);
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoMultiplicacao = somaTempos / 10;
-
-		aux = null;
+		double tempoMultiplicacao = (double) somaTempos / 10;
 
 		somaTempos = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
 			matrizEstatica.imprimeVazia();
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		long tempoEsvazia = somaTempos / 10;
+		double tempoImprimeVazia = (double) somaTempos / 10;
 
-		System.out.println("MATRIZ ESTATICA TAM=" + matrizEstatica.getTam());
-		System.out.println("Tempo gerar:" + tempoGerar);
-		System.out.println("Tempo remove: " + tempoRemover);
-		System.out.println("Tempo insere: " + tempoInserir);
-		System.out.println("Tempo get: " + tempoBuscar);
-		System.out.println("Tempo confereVazia: " + tempoVerificaVazia);
-		System.out.println("Tempo confereDiagonal: " + tempoVerificaDiagonal);
-		System.out.println("Tempo confereColuna: " + tempoVerificaColuna);
-		System.out.println("Tempo confereLinha: " + tempoVerificaLinha);
-		System.out.println("Tempo confereTrianguloSuperior: " + tempoTriangSup);
-		System.out.println("Tempo confereTrianguloInferior: " + tempoTriangInf);
-		System.out.println("Tempo verificarSimetria: " + tempoVerificaSimetria);
-		System.out.println("Tempo soma: " + tempoSoma);
-		System.out.println("Tempo multiplicação: " + tempoMultiplicacao);
-		System.out.println("Tempo transposta: " + tempoTransposta);
-		System.out.println("Tempo acessar posicao: " + tempoAcessarPosicao);
-		System.out.println("Tempo imprimir: " + tempoImprimir);
-		System.out.println("Tempo esvaziar: " + tempoEsvazia);
+		System.out.printf("MATRIZ ESTATICA TAM=%d%n", matrizEstatica.getTam());
+		System.out.printf("Tempo gerar: %.5f%n", tempoGerar);
+		System.out.printf("Tempo remove: %.5f%n", tempoRemover);
+		System.out.printf("Tempo insere: %.5f%n", tempoInserir);
+		System.out.printf("Tempo buscar elemento: %.5f%n", tempoBuscar);
+		System.out.printf("Tempo confereVazia: %.5f%n", tempoVerificaVazia);
+		System.out.printf("Tempo confereDiagonal: %.5f%n", tempoVerificaDiagonal);
+		System.out.printf("Tempo confereColuna: %.5f%n", tempoVerificaColuna);
+		System.out.printf("Tempo confereLinha: %.5f%n", tempoVerificaLinha);
+		System.out.printf("Tempo confereTrianguloSuperior: %.5f%n", tempoTriangSup);
+		System.out.printf("Tempo confereTrianguloInferior: %.5f%n", tempoTriangInf);
+		System.out.printf("Tempo verificarSimetria: %.5f%n", tempoVerificaSimetria);
+		System.out.printf("Tempo soma: %.5f%n", tempoSoma);
+		System.out.printf("Tempo multiplicação: %.5f%n", tempoMultiplicacao);
+		System.out.printf("Tempo transposta: %.5f%n", tempoTransposta);
+		System.out.printf("Tempo acessar posicao: %.5f%n", tempoAcessarPosicao);
+		System.out.printf("Tempo imprimir: %.5f%n", tempoImprimir);
+		System.out.printf("Tempo esvaziar: %.5f%n", tempoImprimeVazia);
+
 	}
 
 /*

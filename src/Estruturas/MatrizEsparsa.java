@@ -17,5 +17,6 @@ public interface MatrizEsparsa {
     MatrizEsparsa multiplicaMatriz(MatrizEsparsa e);
     MatrizEsparsa obtemTransposta();
     int getElem(int row, int col);
+    void esvazia();
 }
 

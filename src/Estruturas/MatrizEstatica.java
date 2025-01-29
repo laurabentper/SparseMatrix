@@ -14,8 +14,6 @@ public class MatrizEstatica implements MatrizEsparsa {
         return tam;
     }
 
-
-
     @Override
     public boolean insereElem(int row, int col, int valor) {
         if(row >= tam || col >= tam){
@@ -60,15 +58,14 @@ public class MatrizEstatica implements MatrizEsparsa {
     	 System.out.print('\n');
     }
 
-    //verificar se precisa mesmo esvaziar a matriz
     @Override
     public void imprimeVazia() {
     	for (int i = 0; i < tam; i++) {
             for (int j = 0; j < tam; j++) {
-                insereElem(i, j, 0);
+                removeElem(i, j);
+                System.out.println(matriz[i][j] + " ");
             }
         }
-    	imprime();
     }
 
     @Override
@@ -131,9 +128,6 @@ public class MatrizEstatica implements MatrizEsparsa {
         return countColunas == 1;
     }
 
-
-   
-    
     @Override
     public boolean ehMatrizTriangInf() {
     	for (int i = 0; i < tam; i++) {
@@ -198,7 +192,6 @@ public class MatrizEstatica implements MatrizEsparsa {
     	return matrizSoma;
     }
 
-
     @Override
     public MatrizEstatica multiplicaMatriz(MatrizEsparsa e) {
         if (!(e instanceof MatrizEstatica)) throw new IllegalArgumentException("Só é possível multiplicar com outra MatrizEstatica.");
@@ -238,6 +231,15 @@ public class MatrizEstatica implements MatrizEsparsa {
     @Override
     public int getElem(int row, int col) {
         return matriz[row][col];
+    }
+
+    @Override
+    public void esvazia() {
+        for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
+                removeElem(i, j);
+            }
+        }
     }
 
 }
