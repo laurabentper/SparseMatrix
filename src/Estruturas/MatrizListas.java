@@ -17,7 +17,32 @@ public class MatrizListas implements MatrizEsparsa{
             prox = null;
         }
 
+        public int getCol() {
+            return col;
+        }
+
+        public int getElem() {
+            return elem;
+        }
+
+        public Elo getProx() {
+            return prox;
+        }
+
+        public void setCol(int col) {
+            this.col = col;
+        }
+
+        public void setElem(int elem) {
+            this.elem = elem;
+        }
+
+        public void setProx(Elo prox) {
+            this.prox = prox;
+        }
     }
+
+
 
     public MatrizListas(int tam){
         this.tam = tam;
@@ -166,43 +191,64 @@ public class MatrizListas implements MatrizEsparsa{
         return !(col == -1);
     }
 
+
     @Override
     public boolean ehMatrizTriangInf() {
         for (int i = 0; i < tam; i++) {
-            if(matriz[i].contemMaiorQue(i)) return false;
+            Elo p = matriz[i];
+
+            while (p != null) {
+                if (p.col > i) {
+                    return false;
+                }
+                p = p.prox;
+            }
         }
         return true;
-
-        if(this.vazia()) return false;
-
-        Lista.Elo p;
-        for(p = prim; p != null; p = p.prox) {
-            if(p.col > row) return true;
-        }
-        return false;
-
     }
+
 
     @Override
     public boolean ehMatrizTriangSup() {
         for (int i = 0; i < tam; i++) {
-            if(matriz[i].contemMenorQue(i)) return false;
+            Elo p = matriz[i];
+
+            while (p != null) {
+                if (p.col < i) {
+                    return false;
+                }
+                p = p.prox;
+            }
         }
         return true;
     }
 
     @Override
     public boolean ehSimetrica() {
-    	MatrizListas transposta = (MatrizListas) this.obtemTransposta();
-    	for(int i = 0; i < this.getLinhas(); i++) {
-    		for(int j = 0; i < this.getColunas(); j++) {
-    			if(this.matriz[i].obterValor(j) != transposta.matriz[i].obterValor(j)) {
-    				return false;
-    			}
-    		}
-    	}
+        for (int i = 0; i < tam; i++) {
+            Elo p = matriz[i];
 
+            while (p != null) {
+                int j = p.col;
+
+                if (!existeElemento(j, i, p.elem)) {
+                    return false;
+                }
+                p = p.prox;
+            }
+        }
         return true;
+    }
+
+    private boolean existeElemento(int row, int col, int elem) {
+        Elo p = matriz[row];
+        while (p != null) {
+            if (p.col == col && p.elem == elem) {
+                return true;
+            }
+            p = p.prox;
+        }
+        return false;
     }
 
     @Override
@@ -212,90 +258,12 @@ public class MatrizListas implements MatrizEsparsa{
 
     @Override
     public MatrizEsparsa multiplicaMatriz(MatrizEsparsa e) {
-    	MatrizListas segundaMatriz = (MatrizListas) e;
-
-    	if(this.getColunas() != segundaMatriz.getLinhas()) {
-    		System.out.println("Erro: índices diferentes");
-    	}
-    	else {
-    		int valor;
-    		MatrizListas produto = new MatrizListas(this.getLinhas(), segundaMatriz.getColunas());
-    		for(int i = 0; i < produto.getLinhas(); i++) {
-        		for(int j = 0; j < produto.getColunas(); j++) {
-        			valor = 0;
-        			for(int k = 0; k < this.getColunas(); k++) {
-        				valor += this.matriz[i].obterValor(k) * segundaMatriz.matriz[k].obterValor(j);
-        			}
-        			produto.insereElem(i, j, valor);
-        		}
-        	}
-    		return produto;
-    	}
-
         return null;
     }
 
     @Override
     public MatrizEsparsa obtemTransposta() {
-
-    	MatrizListas matrizTransposta = new MatrizListas(this.getColunas(), this.getLinhas());
-
-    	for(int i = 0; i < this.getLinhas(); i++) {
-    		for(int j = 0; j < this.getColunas(); j++) {
-    			matrizTransposta.insereElem(j, i, this.matriz[i].obterValor(j));
-    		}
-    	}
-
-        return matrizTransposta;
-
+        return null;
     }
 
-    /* METODOS IMPROVISADOS DA ANTIGA CLASSE LISTA
-    public boolean contemApenas(int col){
-		if (this.vazia()) return true;
-        return prim.col == col && prim.prox == null;
-    }
-
-	public boolean contemMaiorQue(int row){
-		if(this.vazia()) return false;
-
-		Elo p;
-		for(p = prim; p != null; p = p.prox) {
-			if(p.col > row) return true;
-		}
-		return false;
-	}
-
-	public boolean contemMenorQue(int row){
-		if(this.vazia()) return false;
-		return prim.col < row;
-	}
-
-	public void preencherLinha(int[] linha) {
-		Elo p = prim;
-		while(p != null && p.prox != null) {
-			int valor = p.dado;
-			int coluna = p.prox.dado;
-			if(coluna >= 0 && coluna < linha.length) {
-				linha[coluna] = valor;
-			}
-
-			p = p.prox.prox;
-		}
-	}
-
-	public int obterValor(int col) {
-		Elo p = prim;
-		while(p != null && p.prox != null) {
-			int valor = p.dado;
-			int coluna = p.prox.dado;
-			if(coluna == col) {
-				return valor;
-			}
-
-			p = p.prox.prox;
-		}
-		return 0;
-	}
-     */
 }
