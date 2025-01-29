@@ -175,10 +175,9 @@ public class MatrizEstatica implements MatrizEsparsa {
     // devemos considerar a soma de uma matriz estatica com uma matriz dinâmica?
     @Override
     public MatrizEstatica somaMatriz(MatrizEsparsa e) {
-        if (!(e instanceof MatrizEstatica)) throw new IllegalArgumentException("Só é possível somar com outra MatrizEstatica.");
-    	MatrizEstatica m2 = (MatrizEstatica) e;
+        if (!(e instanceof MatrizEstatica m2)) throw new IllegalArgumentException("Só é possível somar com outra MatrizEstatica.");
 
-    	if(this.tam != m2.tam) {
+        if(this.tam != m2.tam) {
     		System.out.print("Erro: Matrizes não são da mesma ordem, não é possível realizar a soma");
     		return null;
     	}
@@ -196,10 +195,9 @@ public class MatrizEstatica implements MatrizEsparsa {
 
     @Override
     public MatrizEstatica multiplicaMatriz(MatrizEsparsa e) {
-        if (!(e instanceof MatrizEstatica)) throw new IllegalArgumentException("Só é possível multiplicar com outra MatrizEstatica.");
-    	MatrizEstatica m2 = (MatrizEstatica) e;
+        if (!(e instanceof MatrizEstatica m2)) throw new IllegalArgumentException("Só é possível multiplicar com outra MatrizEstatica.");
 
-    	if(this.tam != m2.tam) {
+        if(this.tam != m2.tam) {
     		System.out.print("Erro: Não é possível realizar o produto das matrizes, o número de colunas da primeira matriz não é igual ao número de linhas da segunda matriz");
     		return null;
     	}
@@ -239,7 +237,7 @@ public class MatrizEstatica implements MatrizEsparsa {
     public void esvazia() {
         for (int i = 0; i < tam; i++) {
             for (int j = 0; j < tam; j++) {
-                removeElem(i, j);
+                matriz[i][j] = 0;
             }
         }
     }

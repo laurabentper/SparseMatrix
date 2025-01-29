@@ -8,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		testarEstatica( 10 );
+		testarEstatica(10000);
 
 		//testarLista(10);
 
@@ -344,7 +344,7 @@ public class Main {
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
 			t0 = System.currentTimeMillis();
-			matrizEstatica.imprimeVazia();
+			matrizEstatica.esvazia();
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
