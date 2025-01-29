@@ -17,9 +17,36 @@ public class MatrizListas implements MatrizEsparsa{
             this.col = col;
             this.elem = elem;
             prox = null;
+
+        }
+
+        public int getCol() {
+            return col;
+        }
+
+        public int getElem() {
+            return elem;
+        }
+
+        public Elo getProx() {
+            return prox;
+        }
+
+        public void setCol(int col) {
+            this.col = col;
+        }
+
+        public void setElem(int elem) {
+            this.elem = elem;
+        }
+
+        public void setProx(Elo prox) {
+            this.prox = prox;
+
         }
 
     }
+
 
     public MatrizListas(int tam){
         this.tam = tam;
@@ -104,7 +131,9 @@ public class MatrizListas implements MatrizEsparsa{
             {
                 System.out.print(p.elem + " ");
             }
+
             System.out.println();
+
         }
 
         System.out.println();
@@ -153,6 +182,7 @@ public class MatrizListas implements MatrizEsparsa{
     public boolean ehMatrizColuna() {
         int col = -1, colunaAtual;
 
+
     	for (int i = 0; i < tam; i++) {
             if(matriz[i] != null){
                 if(matriz[i].prox != null)
@@ -168,46 +198,73 @@ public class MatrizListas implements MatrizEsparsa{
         }
         return !(col == -1);
     }
-    /*
+    
+    
+  
+
+
     @Override
     public boolean ehMatrizTriangInf() {
         for (int i = 0; i < tam; i++) {
-            if(matriz[i].contemMaiorQue(i)) return false;
+            Elo p = matriz[i];
+
+            while (p != null) {
+                if (p.col > i) {
+                    return false;
+                }
+                p = p.prox;
+            }
         }
         return true;
 
-        if(this.vazia()) return false;
-
-        Lista.Elo p;
-        for(p = prim; p != null; p = p.prox) {
-            if(p.col > row) return true;
-        }
-        return false;
 
     }
+
 
     @Override
     public boolean ehMatrizTriangSup() {
         for (int i = 0; i < tam; i++) {
-            if(matriz[i].contemMenorQue(i)) return false;
+          
+            Elo p = matriz[i];
+
+            while (p != null) {
+                if (p.col < i) {
+                    return false;
+                }
+                p = p.prox;
+            }
         }
         return true;
     }
 
     @Override
     public boolean ehSimetrica() {
-    	MatrizListas transposta = (MatrizListas) this.obtemTransposta();
-    	for(int i = 0; i < this.getLinhas(); i++) {
-    		for(int j = 0; i < this.getColunas(); j++) {
-    			if(this.matriz[i].obterValor(j) != transposta.matriz[i].obterValor(j)) {
-    				return false;
-    			}
-    		}
-    	}
+        for (int i = 0; i < tam; i++) {
+            Elo p = matriz[i];
 
+            while (p != null) {
+                int j = p.col;
+
+                if (!existeElemento(j, i, p.elem)) {
+                    return false;
+                }
+                p = p.prox;
+            }
+        }
         return true;
     }
-*/
+
+    private boolean existeElemento(int row, int col, int elem) {
+        Elo p = matriz[row];
+        while (p != null) {
+            if (p.col == col && p.elem == elem) {
+                return true;
+            }
+            p = p.prox;
+        }
+        return false;
+    }
+
     @Override
     public MatrizEsparsa somaMatriz(MatrizEsparsa e) {
     	MatrizListas m = (MatrizListas) e;
@@ -241,7 +298,11 @@ public class MatrizListas implements MatrizEsparsa{
     	}
     	
         return soma;
+
     }
+
+
+    
     
 
     @Override
@@ -302,52 +363,5 @@ public class MatrizListas implements MatrizEsparsa{
 
     }
 
-    /* METODOS IMPROVISADOS DA ANTIGA CLASSE LISTA
-    public boolean contemApenas(int col){
-		if (this.vazia()) return true;
-        return prim.col == col && prim.prox == null;
-    }
 
-	public boolean contemMaiorQue(int row){
-		if(this.vazia()) return false;
-
-		Elo p;
-		for(p = prim; p != null; p = p.prox) {
-			if(p.col > row) return true;
-		}
-		return false;
-	}
-
-	public boolean contemMenorQue(int row){
-		if(this.vazia()) return false;
-		return prim.col < row;
-	}
-
-	public void preencherLinha(int[] linha) {
-		Elo p = prim;
-		while(p != null && p.prox != null) {
-			int valor = p.dado;
-			int coluna = p.prox.dado;
-			if(coluna >= 0 && coluna < linha.length) {
-				linha[coluna] = valor;
-			}
-
-			p = p.prox.prox;
-		}
-	}
-
-	public int obterValor(int col) {
-		Elo p = prim;
-		while(p != null && p.prox != null) {
-			int valor = p.dado;
-			int coluna = p.prox.dado;
-			if(coluna == col) {
-				return valor;
-			}
-
-			p = p.prox.prox;
-		}
-		return 0;
-	}
-     */
 }

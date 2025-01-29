@@ -2,44 +2,17 @@ package Estruturas;
 
 public class MatrizEstatica implements MatrizEsparsa {
 
-    private int linhas;
-    private int colunas;
+    private int tam;
     private int[][] matriz;
 
-    public MatrizEstatica(int linhas, int colunas) {
-        if(setLinhas(linhas) && setColunas(colunas)) {
-        	matriz = new int[linhas][colunas];
-        }
-        
+    public MatrizEstatica(int n) {
+            tam = n;
+            matriz = new int[tam][tam];
     }
-    
-    public boolean setLinhas(int linhas) {
-    	if(linhas > 0) {
-    		this.linhas = linhas;
-    		return true;
-    	}
-    	return false;
-    }
-    public boolean setColunas(int colunas) {
-    	if(colunas > 0) {
-    		this.colunas = colunas;
-    		return true;
-    	}
-    	return false;
-    }
-    
-    public int getLinhas(){
-    	return linhas;
-    }
-    
-    public int getColunas() {
-    	return colunas;
-    }
-    
 
     @Override
     public boolean insereElem(int row, int col, int valor) {
-        if(row >= linhas || col >= colunas){
+        if(row >= tam || col >= tam){
             System.out.println("Erro ao inserir na matriz. Índice inválido.");
             return false;
         }
@@ -47,47 +20,33 @@ public class MatrizEstatica implements MatrizEsparsa {
         return true;
     }
 
-    
+    @Override
     public boolean removeElem(int row, int col) {
-    	if(row >= linhas || col >= colunas) {
+    	if(row >= tam || col >= tam) {
     		System.out.println("Erro ao remover elemento da matriz. Índice inválido.");
             return false;
     	}
     	matriz[row][col] = 0;
         return true;
     }
-    
-    public boolean removeElem(int valor) {
-    	if(buscaElem(valor)) {
-    		for (int i = 0; i < linhas; i++) {
-                for (int j = 0; j < colunas; j++) {
-                    if (matriz[i][j] == valor) {
-                    	matriz[i][j] = 0;
-                        return true;
-                    }
-                }
-            }
-    	}
-    	
-        return false;
-    }
 
     @Override
     public boolean buscaElem(int elem) { 
-        for (int i = 0; i < linhas; i++) {
-            for (int j = 0; j < colunas; j++) {
+        for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
                 if (matriz[i][j] == elem) {
                     return true;
                 }
             }
         }
+
         return false;
     }
 
     @Override
     public void imprime() {
-    	for (int i = 0; i < linhas; i++) {
-            for (int j = 0; j < colunas; j++) {
+    	for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
                 System.out.print(matriz[i][j] + " ");
             }
             System.out.print('\n');
@@ -95,10 +54,11 @@ public class MatrizEstatica implements MatrizEsparsa {
     	 System.out.print('\n');
     }
 
+    //verificar se precisa mesmo esvaziar a matriz
     @Override
     public void imprimeVazia() {
-    	for (int i = 0; i < linhas; i++) {
-            for (int j = 0; j < colunas; j++) {
+    	for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
                 insereElem(i, j, 0);
             }
         }
@@ -107,8 +67,8 @@ public class MatrizEstatica implements MatrizEsparsa {
 
     @Override
     public boolean ehVazia() {
-    	for (int i = 0; i < linhas; i++) {
-            for (int j = 0; j < colunas; j++) {
+    	for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
                 if(matriz[i][j] != 0) {
                 	return false;
                 }
@@ -120,8 +80,8 @@ public class MatrizEstatica implements MatrizEsparsa {
 
     @Override
     public boolean ehDiagonal() {
-    	for (int i = 0; i < linhas; i++) {
-            for (int j = 0; j < colunas; j++) {
+    	for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
             	if(i != j) {
             		if(matriz[i][j] != 0) {
                     	return false;
@@ -129,31 +89,46 @@ public class MatrizEstatica implements MatrizEsparsa {
             	}
             }
         }
-    	
         return true;
     }
 
+    //verificar se so tem elementos em uma linha
     @Override
     public boolean ehMatrizLinha() {
-        if(linhas == 1) {
-        	return true;
+        int countLinhas = 0;
+
+        for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
+                if(matriz[i][j] != 0) {
+                    countLinhas++;
+                    break;
+                }
+            }
+            if(countLinhas > 1) return false;
         }
-        return false;
+        return countLinhas == 1;
     }
 
     @Override
     public boolean ehMatrizColuna() {
-    	if(colunas == 1) {
-    		return true;
-    	}
-    	
-        return false;
+        int countColunas = 0;
+
+        for (int j = 0; j < tam; j++) {
+            for (int i = 0; i < tam; i++) {
+                if (matriz[i][j] != 0) {
+                    countColunas++;
+                    break;
+                }
+            }
+            if (countColunas > 1) return false;
+        }
+        return countColunas == 1;
     }
-/*
+    
     @Override
     public boolean ehMatrizTriangInf() {
-    	for (int i = 0; i < linhas; i++) {
-            for (int j = 0; j < colunas; j++) {
+    	for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
             	if(i < j) {
             		if(matriz[i][j] != 0) {
             			return false;
@@ -162,13 +137,12 @@ public class MatrizEstatica implements MatrizEsparsa {
             }
         }	
         return true;
-    	
     }
 
     @Override
     public boolean ehMatrizTriangSup() {
-    	for (int i = 0; i < linhas; i++) {
-            for (int j = 0; j < colunas; j++) {
+    	for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
             	if(i > j) {
             		if(matriz[i][j] != 0) {
             			return false;
@@ -181,50 +155,59 @@ public class MatrizEstatica implements MatrizEsparsa {
 
     @Override
     public boolean ehSimetrica() {
-    	MatrizEstatica matrizTransposta = (MatrizEstatica) this.obtemTransposta();
-    	for(int i = 0; i < this.getLinhas(); i++) {
-    		for(int j = 0; i < this.getColunas(); j++) {
-    			if(this.matriz[i][j] != matrizTransposta.matriz[i][j]) {
+    	MatrizEstatica matrizTransposta = this.obtemTransposta();
+
+    	for(int i = 0; i < tam; i++) {
+    		for(int j = 0; j < tam; j++) {
+    			if(matriz[i][j] != matrizTransposta.matriz[i][j]) {
     				return false;
     			}
     		}
     	}
-    	
         return true;
     }
-*/
+
+
+    // devemos considerar a soma de uma matriz estatica com uma matriz dinâmica?
     @Override
-    public MatrizEsparsa somaMatriz(MatrizEsparsa e) {
-    	MatrizEstatica matriz = (MatrizEstatica) e;
-    	if(this.getLinhas() != matriz.getLinhas() || this.getColunas() != matriz.getColunas()) {
-    		System.out.print("Erro: Matrizes não possuem índices iguais, não é possível realizar a soma");
+    public MatrizEstatica somaMatriz(MatrizEsparsa e) {
+        if (!(e instanceof MatrizEstatica)) throw new IllegalArgumentException("Só é possível somar com outra MatrizEstatica.");
+    	MatrizEstatica m2 = (MatrizEstatica) e;
+
+    	if(this.tam != m2.tam) {
+    		System.out.print("Erro: Matrizes não são da mesma ordem, não é possível realizar a soma");
     		return null;
     	}
-    	MatrizEstatica matrizSoma = new MatrizEstatica(matriz.getLinhas(), matriz.getColunas());
-    	for(int i = 0; i < matriz.getLinhas(); i++) {
-    		for(int j = 0; j < matriz.getColunas(); j++) {
-    			matrizSoma.insereElem(i, j, matriz.matriz[i][j] + this.matriz[i][j]);
+
+    	MatrizEstatica matrizSoma = new MatrizEstatica(tam);
+
+    	for(int i = 0; i < tam; i++) {
+    		for(int j = 0; j < tam; j++) {
+    			matrizSoma.insereElem(i, j, m2.matriz[i][j] + this.matriz[i][j]);
     		}
     	}
-    	
+
     	return matrizSoma;
-        
     }
 
+
     @Override
-    public MatrizEsparsa multiplicaMatriz(MatrizEsparsa e) {
-    	MatrizEstatica matriz = (MatrizEstatica) e;
-    	if(this.getColunas() != matriz.getLinhas()) {
-    		System.out.print("Erro: Não é possível realizar o produto das raízes, o número de colunas da primeira matriz não é igual ao número de linhas da segunda matriz");
+    public MatrizEstatica multiplicaMatriz(MatrizEsparsa e) {
+        if (!(e instanceof MatrizEstatica)) throw new IllegalArgumentException("Só é possível multiplicar com outra MatrizEstatica.");
+    	MatrizEstatica m2 = (MatrizEstatica) e;
+
+    	if(this.tam != m2.tam) {
+    		System.out.print("Erro: Não é possível realizar o produto das matrizes, o número de colunas da primeira matriz não é igual ao número de linhas da segunda matriz");
     		return null;
     	}
-    	MatrizEstatica matrizMult = new MatrizEstatica(this.getLinhas(), matriz.getColunas());
+
+    	MatrizEstatica matrizMult = new MatrizEstatica(tam);
     	int valor;
-    	for(int i = 0; i < matrizMult.getLinhas(); i++) {
-    		for(int j = 0; j < matrizMult.getColunas(); j++) {
+    	for(int i = 0; i < tam; i++) {
+    		for(int j = 0; j < tam; j++) {
     			valor = 0;
-    			for(int k = 0; k < this.getColunas(); k++) {
-    				valor += this.matriz[i][k] * matriz.matriz[k][j]; 
+    			for(int k = 0; k < tam; k++) {
+    				valor += this.matriz[i][k] * m2.matriz[k][j];
     			}
     			matrizMult.insereElem(i, j, valor);
     		}
@@ -233,18 +216,15 @@ public class MatrizEstatica implements MatrizEsparsa {
     }
 
     @Override
-    public MatrizEsparsa obtemTransposta() {
-    	
-    	MatrizEstatica matrizTransposta = new MatrizEstatica(this.getColunas(), this.getLinhas());
-    	
-    	for(int i = 0; i < this.getLinhas(); i++) {
-    		for(int j = 0; j < this.getColunas(); j++) {
-    			matrizTransposta.insereElem(j, i, this.matriz[i][j]);
+    public MatrizEstatica obtemTransposta() {
+    	MatrizEstatica matrizTransposta = new MatrizEstatica(tam);
+
+    	for(int i = 0; i < tam; i++) {
+    		for(int j = 0; j < tam; j++) {
+                matrizTransposta.matriz[j][i] = matriz[i][j];
     		}
     	}
-    	
-    	
-    	
         return matrizTransposta;
     }
+
 }
