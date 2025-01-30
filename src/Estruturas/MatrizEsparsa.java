@@ -18,5 +18,6 @@ public interface MatrizEsparsa {
     MatrizEsparsa obtemTransposta();
     int getElem(int row, int col);
     void esvazia();
+    int getTam();
 }
 

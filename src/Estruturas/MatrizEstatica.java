@@ -10,6 +10,7 @@ public class MatrizEstatica implements MatrizEsparsa {
             matriz = new int[tam][tam];
     }
 
+    @Override
     public int getTam() {
         return tam;
     }
@@ -30,7 +31,10 @@ public class MatrizEstatica implements MatrizEsparsa {
     		System.out.println("Erro ao remover elemento da matriz. Índice inválido.");
             return false;
     	}
-    	matriz[row][col] = 0;
+
+        if(matriz[row][col] == 0)
+            return false;
+        else  matriz[row][col] = 0;
         return true;
     }
 
@@ -43,7 +47,6 @@ public class MatrizEstatica implements MatrizEsparsa {
                 }
             }
         }
-
         return false;
     }
 
@@ -55,7 +58,7 @@ public class MatrizEstatica implements MatrizEsparsa {
             }
             System.out.print('\n');
         }
-    	 System.out.print('\n');
+        System.out.print('\n');
     }
 
     @Override
@@ -172,7 +175,6 @@ public class MatrizEstatica implements MatrizEsparsa {
         return true;
     }
 
-    // devemos considerar a soma de uma matriz estatica com uma matriz dinâmica?
     @Override
     public MatrizEstatica somaMatriz(MatrizEsparsa e) {
         if (!(e instanceof MatrizEstatica m2)) throw new IllegalArgumentException("Só é possível somar com outra MatrizEstatica.");
