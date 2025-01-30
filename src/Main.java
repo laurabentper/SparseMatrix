@@ -1,8 +1,7 @@
-import Estruturas.MatrizEsparsa;
+
 import Estruturas.MatrizEstatica;
 import Estruturas.MatrizListas;
 
-import java.util.HashSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
@@ -10,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		//testarEstatica(10000);
-		testarDinamica(1000);
+		testarDinamica(20000);
 
 	}
 
@@ -18,7 +17,7 @@ public class Main {
 
 		int tamanho = matrizListas.getTam();
 
-		//define quantos elementos devem ser diferentes de zero
+		//qtd de elementos diferentes de zero
 		long esparsidade = Math.round(tamanho * tamanho * 0.4);
 
 		while(esparsidade > 0){
@@ -36,7 +35,6 @@ public class Main {
 
 		int tamanho = matrizEstatica.getTam();
 
-		//define quantos elementos devem ser diferentes de zero
 		long esparsidade = Math.round(tamanho * tamanho * 0.4);
 
 		while (esparsidade > 0){
@@ -275,7 +273,6 @@ public class Main {
 			somaTempos += (t1 - t0);
 		}
 		double tempoVerificaSimetria = (double) somaTempos / testes;
-		//subtrair no relatorio o tempo para gerar a transposta.
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {

@@ -49,7 +49,6 @@ public class MatrizListas implements MatrizEsparsa{
             ant = p;
 
         if (p != null && p.col == col){
-            p.elem = elem;
             return false;
         } else {
             q = new Elo(col, elem);

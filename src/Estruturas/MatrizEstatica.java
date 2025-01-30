@@ -23,10 +23,10 @@ public class MatrizEstatica implements MatrizEsparsa {
         }
 
         if(matriz[row][col] != 0){
-            if(valor != 0)
+            if(valor != 0) {
                 return false;
+            }
         }
-
         matriz[row][col] = valor;
         return true;
     }
