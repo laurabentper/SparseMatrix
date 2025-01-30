@@ -94,16 +94,20 @@ public class MatrizEstatica implements MatrizEsparsa {
 
     @Override
     public boolean ehDiagonal() {
+        boolean vazia = true;
+
     	for (int i = 0; i < tam; i++) {
             for (int j = 0; j < tam; j++) {
             	if(i != j) {
             		if(matriz[i][j] != 0) {
                     	return false;
                     }
-            	}
+            	} else if(matriz[i][j] != 0) {
+                    vazia = false;
+                }
             }
         }
-        return true;
+        return !vazia;
     }
 
     //verificar se so tem elementos em uma linha

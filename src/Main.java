@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		//testarEstatica(10000);
-		testarDinamica(20000);
+		testarDinamica(10000);
 
 	}
 
