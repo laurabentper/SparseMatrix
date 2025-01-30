@@ -39,8 +39,7 @@ public class MatrizListas implements MatrizEsparsa{
     	}
 
         if (elem == 0){
-            removeElem(row, col);
-            return true;
+           return removeElem(row, col);
         }
 
         Elo p, q;
@@ -51,6 +50,7 @@ public class MatrizListas implements MatrizEsparsa{
 
         if (p != null && p.col == col){
             p.elem = elem;
+            return false;
         } else {
             q = new Elo(col, elem);
 

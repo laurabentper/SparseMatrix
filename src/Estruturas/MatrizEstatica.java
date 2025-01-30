@@ -21,6 +21,12 @@ public class MatrizEstatica implements MatrizEsparsa {
             System.out.println("Erro ao inserir na matriz. Índice inválido.");
             return false;
         }
+
+        if(matriz[row][col] != 0){
+            if(valor != 0)
+                return false;
+        }
+
         matriz[row][col] = valor;
         return true;
     }

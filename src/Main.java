@@ -2,6 +2,7 @@ import Estruturas.MatrizEsparsa;
 import Estruturas.MatrizEstatica;
 import Estruturas.MatrizListas;
 
+import java.util.HashSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
@@ -25,8 +26,7 @@ public class Main {
 			int col = ThreadLocalRandom.current().nextInt(0, tamanho);
 			int dado = ThreadLocalRandom.current().nextInt(1, 10);
 
-			if(matrizListas.getElem(row, col) == 0){
-				matrizListas.insereElem(row, col, dado);
+			if(matrizListas.insereElem(row, col, dado)){
 				esparsidade--;
 			}
 		}
@@ -45,8 +45,7 @@ public class Main {
 			int col = ThreadLocalRandom.current().nextInt(0, tamanho);
 			int dado = ThreadLocalRandom.current().nextInt(1, 10);
 
-			if(matrizEstatica.getElem(row,col) == 0){
-				matrizEstatica.insereElem(row,col,dado);
+			if(matrizEstatica.insereElem(row,col,dado)){
 				esparsidade--;
 			}
 		}
