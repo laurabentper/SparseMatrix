@@ -20,33 +20,6 @@ public class MatrizListas implements MatrizEsparsa{
             this.elem = elem;
             prox = null;
         }
-
-
-        public int getCol() {
-            return col;
-        }
-
-        public int getElem() {
-            return elem;
-        }
-
-        public Elo getProx() {
-            return prox;
-        }
-
-        public void setCol(int col) {
-            this.col = col;
-        }
-
-        public void setElem(int elem) {
-            this.elem = elem;
-        }
-
-        public void setProx(Elo prox) {
-            this.prox = prox;
-
-        }
-
     }
 
     public MatrizListas(int tam){
@@ -54,10 +27,14 @@ public class MatrizListas implements MatrizEsparsa{
         matriz = new Elo[tam];
     }
 
+    public int getTam() {
+        return tam;
+    }
+
     @Override
     public boolean insereElem(int row, int col, int elem) {
 
-    	if(row > tam || col > tam) {
+    	if(row >= tam || col >= tam) {
             System.out.println("Erro ao inserir na matriz. Índice inválido.");
             return false;
     	}

@@ -61,7 +61,7 @@ public class Main {
 
 		MatrizEstatica matrizEstatica = new MatrizEstatica(tamanho);
 
-		int testes = 10;
+		int testes = 1;
 		long t1, t0, somaTempos = 0;
 
 		/*for (int i = 0; i < testes; i++) {
@@ -194,7 +194,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoGerar = (double) somaTempos / 10;
+		double tempoGerar = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -203,7 +203,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoTransposta = (double) somaTempos / 10;
+		double tempoTransposta = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -212,7 +212,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoVerificaSimetria = (double) somaTempos / 10;
+		double tempoVerificaSimetria = (double) somaTempos / testes;
 		//subtrair no relatorio o tempo para gerar a transposta.
 
 		somaTempos = 0;
@@ -222,7 +222,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoImprimir = (double) somaTempos / 10;
+		double tempoImprimir = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -232,7 +232,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoBuscar = (double) somaTempos / 10;
+		double tempoBuscar = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -241,7 +241,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoVerificaVazia = (double) somaTempos / 10;
+		double tempoVerificaVazia = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -250,7 +250,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoVerificaDiagonal = (double) somaTempos / 10;
+		double tempoVerificaDiagonal = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -259,7 +259,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoVerificaColuna = (double) somaTempos / 10;
+		double tempoVerificaColuna = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -268,7 +268,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoVerificaLinha = (double) somaTempos / 10;
+		double tempoVerificaLinha = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -277,7 +277,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoTriangSup = (double) somaTempos / 10;
+		double tempoTriangSup = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -286,7 +286,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoTriangInf = (double) somaTempos / 10;
+		double tempoTriangInf = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -297,7 +297,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoAcessarPosicao = (double) somaTempos / 10;
+		double tempoAcessarPosicao = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -309,7 +309,7 @@ public class Main {
 			matrizEstatica.removeElem(row, col);
 			somaTempos += (t1 - t0);
 		}
-		double tempoInserir = (double) somaTempos / 10;
+		double tempoInserir = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -321,7 +321,7 @@ public class Main {
 			matrizEstatica.insereElem(row, col, 1);
 			somaTempos += (t1 - t0);
 		}
-		double tempoRemover = (double) somaTempos / 10;
+		double tempoRemover = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -330,7 +330,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoSoma = (double) somaTempos / 10;
+		double tempoSoma = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -339,7 +339,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoMultiplicacao = (double) somaTempos / 10;
+		double tempoMultiplicacao = (double) somaTempos / testes;
 
 		somaTempos = 0;
 		for (int i = 0; i < testes; i++) {
@@ -348,7 +348,7 @@ public class Main {
 			t1 = System.currentTimeMillis();
 			somaTempos += (t1 - t0);
 		}
-		double tempoImprimeVazia = (double) somaTempos / 10;
+		double tempoImprimeVazia = (double) somaTempos / testes;
 
 		System.out.printf("MATRIZ ESTATICA TAM=%d%n", matrizEstatica.getTam());
 		System.out.printf("Tempo gerar: %.5f%n", tempoGerar);
