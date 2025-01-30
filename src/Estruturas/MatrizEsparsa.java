@@ -2,7 +2,7 @@ package Estruturas;
 
 public interface MatrizEsparsa {
     boolean insereElem(int row, int col, int valor);
-    boolean removeElem(); // remove pela posição ou pelo valor?
+    boolean removeElem(int row, int col);
     boolean buscaElem(int elem);
     void imprime();
     void imprimeVazia();
@@ -12,9 +12,12 @@ public interface MatrizEsparsa {
     boolean ehMatrizColuna();
     boolean ehMatrizTriangInf();
     boolean ehMatrizTriangSup();
-    boolean ehSimetrica(MatrizEsparsa e);
+    boolean ehSimetrica();
     MatrizEsparsa somaMatriz(MatrizEsparsa e);
-    int multiplicaMatriz(MatrizEsparsa e);
-    MatrizEsparsa obtemTransposta(MatrizEsparsa e);
+    MatrizEsparsa multiplicaMatriz(MatrizEsparsa e);
+    MatrizEsparsa obtemTransposta();
+    int getElem(int row, int col);
+    void esvazia();
+    int getTam();
 }
 
